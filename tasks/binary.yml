@@ -5,10 +5,6 @@
     checksum_algorithm: "{{ node_exporter.checksum.algorithm }}"
   register: "bin"
 
-- debug:
-    var: "node_exporter"
-- debug:
-    var: "bin.stat"
 - name: "Fetch the archive from GitHub"
   get_url:
     url: "https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter.version }}/node_exporter-{{ node_exporter.version }}.linux-{{ node_exporter.arch }}.tar.gz"
@@ -33,7 +29,7 @@
     mode: "u=rwx,g=rwx,o=rwx"
   when: bin.stat.exists == False or
         bin.stat.checksum != "{{ node_exporter.checksum.binary }}"
-  notify: "restart service"
+  notify: "restart node_exporter"
 
 - name: "Clean the /tmp/ dir up"
   file:

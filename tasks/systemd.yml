@@ -1,0 +1,8 @@
+---
+- name: "Create the systemd service"
+  template:
+    src: "etc/systemd/system/node_exporter.service.j2"
+    dest: "/etc/systemd/system/node_exporter.service"
+    owner: "root"
+    mode: "u=rwx,g=r,o=r"
+  notify: "restart node_exporter"

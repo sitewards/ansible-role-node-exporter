@@ -1,2 +1,3 @@
 ---
 - include: "binary.yml"
+- include: "systemd.yml"

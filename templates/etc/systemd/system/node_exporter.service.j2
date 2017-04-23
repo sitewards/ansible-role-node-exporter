@@ -1,0 +1,18 @@
+[Unit]
+Description=The prometheus node exporter
+Documentation=https://github.com/littlemanco/ansible-role-node-exporter
+
+[Service]
+
+# Try to always ensure this service is running. It's how we health check other services remotely.
+Restart=always
+
+# Start the service, bound to localhost. It will be exposed by another service, such as NGINX or stunnel.
+ExecStart=/usr/local/bin/node_exporter \
+    -web.listen-address=127.0.0.1:9100 \
+    -collectors.enabled={{ node_exporter.exporters }}
+
+[Install]
+
+# Boot it after the network is up and running
+WantedBy=network-online.target
