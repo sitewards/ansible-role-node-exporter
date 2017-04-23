@@ -1,10 +1,10 @@
 # Ansible Prometheus node-exporter role
 
 This is the Ansible Prometheus node-exporter role. It's designed for consumption by playbooks, not for consumption by
-itself. It adds the Prometheus node-exporter, bound to localhost. It's expected that another role will take care of 
+itself. It adds the Prometheus node-exporter, bound to localhost. It's expected that another role will take care of
 reverse proxying this exporter with SSL and auth.
 
-## Requirements 
+## Requirements
 
 - Internet Access
 
@@ -40,6 +40,10 @@ $ git submodule add https://github.com/littlemanco/ansible-role-node-exporter ro
 ```
 
 This should work!
+
+## Configuration
+
+The variables that are available are defined in defaults/main.yml
 
 ## Contact
 
