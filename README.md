@@ -33,9 +33,11 @@ roles
 
 This will allow the role to be discovered. Then, add this repo as a submodule:
 
+```
 $ cd path/to/playbook/root
 $ mkdir roles/
 $ git submodule add https://github.com/littlemanco/ansible-role-node-exporter roles/node-exporter
+```
 
 This should work!
 
