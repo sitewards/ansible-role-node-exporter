@@ -1,0 +1,42 @@
+---
+- name: "Check whether the node exporter has already been installed"
+  stat:
+    path: "/usr/local/bin/node_exporter"
+    checksum_algorithm: "{{ node_exporter.checksum.algorithm }}"
+  register: "bin"
+
+- name: "Fetch the archive from GitHub"
+  get_url:
+    url: "https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter.version }}/node_exporter-{{ node_exporter.version }}.linux-amd64.tar.gz"
+    dest: "/tmp/"
+    checksum: "{{ node_exporter.checksum.algorithm }}:{{ node_exporter.checksum.archive }}"
+  when: bin.stat.exists == False or
+        bin.stat.checksum != "{{ node_exporter.checksum.binary }}"
+
+- name: "Unpack the archive in /tmp"
+  unarchive:
+    src: "/tmp/node_exporter-{{ node_exporter.version }}.linux-amd64.tar.gz"
+    dest: "/tmp"
+  when: bin.stat.exists == False or
+        bin.stat.checksum != "{{ node_exporter.checksum.binary }}"
+
+- name: "Move node-exporter to the /usr/local/bin/node-exporter"
+  copy:
+    src: "/tmp/node_exporter-0.14.0.linux-amd64/node_exporter"
+    dest: "/usr/local/bin/node_exporter"
+    owner: "root"
+    group: "root"
+    mode: "u=rwx,g=rwx,o=rwx"
+  when: bin.stat.exists == False or
+        bin.stat.checksum != "{{ node_exporter.checksum.binary }}"
+  notify: "restart service"
+
+- name: "Clean the /tmp/ dir up"
+  file:
+    path: "{{ item }}"
+    state: "absent"
+  with_items:
+    - "/tmp/node_exporter-{{ node_exporter.version }}.linux-amd64.tar.gz"
+    - "/tmp/node_exporter-0.14.0.linux-amd64/"
+  when: bin.stat.exists == False or
+        bin.stat.checksum != "{{ node_exporter.checksum.binary }}"
