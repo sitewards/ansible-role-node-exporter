@@ -1,11 +1,22 @@
 ---
-node_exporter:
-  version: "0.14.0"
-  arch: "amd64"
-  checksum:
-    algorithm: "sha512"
-    binary: "8aa6be677870c8b7dc3c5e1ff5824838c005b5413e2ea7781bd8763ca14c6aba04a0cad4698fc613ef013797821c39405e1566855f0c63495ebb4a2f733f75a7"
-    archive: "8748f88480a2995a8188ed65c5b3f7d80bacac5fd1bde9e7f909299a4eee11479e9cca7fc1654a171b15b50654c92f353e86f24192410f0fcadea3b01c904913"
+## The version of the node exporter to download and install. A full list of versions can be found at the following URL:
+## https://github.com/prometheus/node_exporter/releases
+node_exporter_version: "0.14.0"
+
+## The architecture that the node exporter supports. The exporter is built for a series of architectures; see the above
+## releases link for further details
+node_exporter_arch: "amd64"
+
+## The checksum algorithm to check the release against. See the following URL for a list of options:
+## http://docs.ansible.com/ansible/stat_module.html
+node_exporter_checksum_algorithm: "sha512"
+
+## There are two checksums that matter: The archive, and the binary. The binary is the executable node exporter,
+## the archive the thing it's downloaded with.
+node_exporter_checksum_binary: "8aa6be677870c8b7dc3c5e1ff5824838c005b5413e2ea7781bd8763ca14c6aba04a0cad4698fc613ef013797821c39405e1566855f0c63495ebb4a2f733f75a7"
+
+## See above
+node_exporter_checksum_archive: "8748f88480a2995a8188ed65c5b3f7d80bacac5fd1bde9e7f909299a4eee11479e9cca7fc1654a171b15b50654c92f353e86f24192410f0fcadea3b01c904913"
 
 ## These are the default exporters that are enabled as of v0.14.0. To get a list of the available exporters, run
 ##

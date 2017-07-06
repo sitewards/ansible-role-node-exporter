@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## [Unreleased]
 ### Changed
 
-- Variable "node_exporter.exporters" has been renamed "node_exporter_exporters", and is now an array.
+- Updated the naming standard of all varialbes
 
 ## 1.0.0
 ### Added
