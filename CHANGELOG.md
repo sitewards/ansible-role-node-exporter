@@ -5,5 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+
+- Variable "node_exporter.exporters" has been renamed "node_exporter_exporters", and is now an array.
+
+## 1.0.0
 ### Added
+
 - Everything. This is the initial release.

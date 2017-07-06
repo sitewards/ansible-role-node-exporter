@@ -10,7 +10,7 @@ Restart=always
 # Start the service, bound to localhost. It will be exposed by another service, such as NGINX or stunnel.
 ExecStart=/usr/local/bin/node_exporter \
     -web.listen-address=127.0.0.1:9100 \
-    -collectors.enabled={{ node_exporter.exporters }}
+    -collectors.enabled={{ node_exporter.exporters | join }}
 
 [Install]
 
