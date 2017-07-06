@@ -43,3 +43,10 @@ node_exporter_exporters:
   - "netstat"
   - "wifi"
   - "hwmon"
+
+## Prometheus supports exporting metrics for things like cronjobs to a specific location on disk, where the node
+## exporter will later pick them up. The path below is the the location the metrics are expected to appear, in the
+## prometheus format.
+##
+## It is created with liberal permissions, so any process can export metrics to it.
+node_exporter_textfile_directory: "/var/metrics/prometheus"

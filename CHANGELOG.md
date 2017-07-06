@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+### Added
+
+- Support for textfile metrics
+
 ### Changed
 
 - Updated the naming standard of all varialbes
