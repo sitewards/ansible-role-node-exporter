@@ -2,33 +2,33 @@
 - name: "Check whether the node exporter has already been installed"
   stat:
     path: "/usr/local/bin/node_exporter"
-    checksum_algorithm: "{{ node_exporter.checksum.algorithm }}"
+    checksum_algorithm: "{{ node_exporter_checksum_algorithm }}"
   register: "bin"
 
 - name: "Fetch the archive from GitHub"
   get_url:
-    url: "https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter.version }}/node_exporter-{{ node_exporter.version }}.linux-{{ node_exporter.arch }}.tar.gz"
-    dest: "/tmp/"
-    checksum: "{{ node_exporter.checksum.algorithm }}:{{ node_exporter.checksum.archive }}"
+    url: "https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_arch }}.tar.gz"
+    dest: "/tmp/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_arch }}.tar.gz"
+    checksum: "{{ node_exporter_checksum_algorithm }}:{{ node_exporter_checksum_archive }}"
   when: bin.stat.exists == False or
-        bin.stat.checksum != "{{ node_exporter.checksum.binary }}"
+        bin.stat.checksum != node_exporter_checksum_binary
 
 - name: "Unpack the archive in /tmp"
   unarchive:
-    src: "/tmp/node_exporter-{{ node_exporter.version }}.linux-{{ node_exporter.arch }}.tar.gz"
+    src: "/tmp/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_arch }}.tar.gz"
     dest: "/tmp"
   when: bin.stat.exists == False or
-        bin.stat.checksum != "{{ node_exporter.checksum.binary }}"
+        bin.stat.checksum != node_exporter_checksum_binary
 
 - name: "Move node-exporter to the /usr/local/bin/node-exporter"
   copy:
-    src: "/tmp/node_exporter-0.14.0.linux-{{ node_exporter.arch }}/node_exporter"
+    src: "/tmp/node_exporter-0.14.0.linux-{{ node_exporter_arch }}/node_exporter"
     dest: "/usr/local/bin/node_exporter"
     owner: "root"
     group: "root"
     mode: "u=rwx,g=rwx,o=rwx"
   when: bin.stat.exists == False or
-        bin.stat.checksum != "{{ node_exporter.checksum.binary }}"
+        bin.stat.checksum != node_exporter_checksum_binary
   notify: "restart node_exporter"
 
 - name: "Clean the /tmp/ dir up"
@@ -36,7 +36,7 @@
     path: "{{ item }}"
     state: "absent"
   with_items:
-    - "/tmp/node_exporter-{{ node_exporter.version }}.linux-{{ node_exporter.arch }}.tar.gz"
-    - "/tmp/node_exporter-0.14.0.linux-{{ node_exporter.arch }}/"
+    - "/tmp/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_arch }}.tar.gz"
+    - "/tmp/node_exporter-0.14.0.linux-{{ node_exporter_arch }}/"
   when: bin.stat.exists == False or
-        bin.stat.checksum != "{{ node_exporter.checksum.binary }}"
+        bin.stat.checksum != node_exporter_checksum_binary
