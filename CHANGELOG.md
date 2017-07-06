@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to 
 [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## 2.0.0
 
 ### Added
 
@@ -12,7 +12,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### Changed
 
-- Updated the naming standard of all varialbes
+- Updated the naming standard of all variables
 
 ## 1.0.0
 ### Added
