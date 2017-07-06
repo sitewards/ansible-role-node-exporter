@@ -11,14 +11,14 @@
     dest: "/tmp/"
     checksum: "{{ node_exporter.checksum.algorithm }}:{{ node_exporter.checksum.archive }}"
   when: bin.stat.exists == False or
-        bin.stat.checksum != "{{ node_exporter.checksum.binary }}"
+        bin.stat.checksum != node_exporter.checksum.binary
 
 - name: "Unpack the archive in /tmp"
   unarchive:
     src: "/tmp/node_exporter-{{ node_exporter.version }}.linux-{{ node_exporter.arch }}.tar.gz"
     dest: "/tmp"
   when: bin.stat.exists == False or
-        bin.stat.checksum != "{{ node_exporter.checksum.binary }}"
+        bin.stat.checksum != node_exporter.checksum.binary
 
 - name: "Move node-exporter to the /usr/local/bin/node-exporter"
   copy:
@@ -28,7 +28,7 @@
     group: "root"
     mode: "u=rwx,g=rwx,o=rwx"
   when: bin.stat.exists == False or
-        bin.stat.checksum != "{{ node_exporter.checksum.binary }}"
+        bin.stat.checksum != node_exporter.checksum.binary
   notify: "restart node_exporter"
 
 - name: "Clean the /tmp/ dir up"
@@ -39,4 +39,4 @@
     - "/tmp/node_exporter-{{ node_exporter.version }}.linux-{{ node_exporter.arch }}.tar.gz"
     - "/tmp/node_exporter-0.14.0.linux-{{ node_exporter.arch }}/"
   when: bin.stat.exists == False or
-        bin.stat.checksum != "{{ node_exporter.checksum.binary }}"
+        bin.stat.checksum != node_exporter.checksum.binary
