@@ -47,5 +47,4 @@ The variables that are available are defined in defaults/main.yml
 
 ## Contact
 
-- Contact: hello@andrewhowden.com
-- Web: https://www.andrewhowden.com/
+- Contact: https://www.sitewards.com/
