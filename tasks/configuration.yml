@@ -1,0 +1,6 @@
+---
+- name: "Create the textfile metrics directory"
+  file:
+    path: "{{ node_exporter_textfile_directory }}"
+    state: "directory"
+    mode: "u=rwx,g=rwx,o=rwx"
