@@ -6,3 +6,9 @@
     owner: "root"
     mode: "u=rwx,g=r,o=r"
   notify: "restart node_exporter"
+
+- name: "Make sure node exporter service is running and auto-starting"
+  service:
+    name: "node_exporter"
+    state: "started"
+    enabled: "yes"
