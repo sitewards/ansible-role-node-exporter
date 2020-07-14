@@ -1,7 +1,7 @@
 ---
 ## The version of the node exporter to download and install. A full list of versions can be found at the following URL:
 ## https://github.com/prometheus/node_exporter/releases
-node_exporter_version: "0.14.0"
+node_exporter_version: "0.15.2"
 
 ## The architecture that the node exporter supports. The exporter is built for a series of architectures; see the above
 ## releases link for further details
@@ -13,10 +13,10 @@ node_exporter_checksum_algorithm: "sha512"
 
 ## There are two checksums that matter: The archive, and the binary. The binary is the executable node exporter,
 ## the archive the thing it's downloaded with.
-node_exporter_checksum_binary: "8aa6be677870c8b7dc3c5e1ff5824838c005b5413e2ea7781bd8763ca14c6aba04a0cad4698fc613ef013797821c39405e1566855f0c63495ebb4a2f733f75a7"
+node_exporter_checksum_binary: "b2a4c62e33e2414aeb9ee80a3d54dc0ca35922398c528c46dc9b9074d39c8d19737b79abbc1bef64c4a36f36f67fb24073f470f451d93aa035a291726606a970"
 
 ## See above
-node_exporter_checksum_archive: "8748f88480a2995a8188ed65c5b3f7d80bacac5fd1bde9e7f909299a4eee11479e9cca7fc1654a171b15b50654c92f353e86f24192410f0fcadea3b01c904913"
+node_exporter_checksum_archive: "7987aac1fdf892e1f38262db11ce93b2a4a8a71921e733613336e8218c4c37724ba1d694abf94fd74a5b9ea49c75fac3d823b4d3aedb333b6fbc8fe9b6b73307"
 
 ## These are the default exporters that are enabled as of v0.14.0. To get a list of the available exporters, run
 ##
