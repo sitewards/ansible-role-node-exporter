@@ -24,7 +24,7 @@
 - name: "Move node-exporter to the /usr/local/bin/node-exporter"
   copy:
     remote_src: true
-    src: "/tmp/node_exporter-0.14.0.linux-{{ node_exporter_arch }}/node_exporter"
+    src: "/tmp/node_exporter-{{ node_exporter_version }}-{{ node_exporter_arch }}/node_exporter"
     dest: "/usr/local/bin/node_exporter"
     owner: "root"
     group: "root"
