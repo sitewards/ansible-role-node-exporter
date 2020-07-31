@@ -39,6 +39,6 @@
     state: "absent"
   with_items:
     - "/tmp/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_arch }}.tar.gz"
-    - "/tmp/node_exporter-0.14.0.linux-{{ node_exporter_arch }}/"
+    - "/tmp/node_exporter-{{ node_exporter_version }}-{{ node_exporter_arch }}/"
   when: bin.stat.exists == False or
         bin.stat.checksum != node_exporter_checksum_binary
